@@ -188,7 +188,7 @@ function! QFGrep#grep_QuickFix(invert)
   endif
   call inputsave()
   echohl QFGPrompt
-  let pat = input(a:invert? 'v/' : 'g/'))
+  let pat = input(a:invert ? 'v/' : 'g/')
   echohl None
   call inputrestore()
   "clear the cmdline
