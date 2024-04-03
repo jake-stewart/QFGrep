@@ -25,9 +25,6 @@ if exists("g:autoloaded_QFGrep") || &cp
 endif
 let g:autoloaded_QFGrep = 1
 
-"the message header
-let s:msgHead = '[QFGrep] ' 
-
 "read user's highlighting setting, and define highlighting groups {{{1
 if !exists('g:QFG_hi_prompt')
   let g:QFG_hi_prompt='ctermbg=68 ctermfg=16 guibg=#5f87d7 guifg=black'
@@ -51,7 +48,7 @@ execute 'hi QFGError '  . g:QFG_hi_error
 "print err message in err highlighting{{{2
 function! QFGrep#print_err_msg(errMsg)
   echohl QFGError
-  echon s:msgHead . a:errMsg
+  echon a:errMsg
   echohl None
 endfunction
 
@@ -59,7 +56,7 @@ endfunction
 "print Highlighted info {{{2
 function! QFGrep#print_HLInfo(msg)
   echohl QFGInfo
-  echon s:msgHead .  a:msg
+  echon a:msg
   echohl None
 endfunction
 
@@ -118,8 +115,8 @@ function! QFGrep#set_list(list)
   endif
   "restore the window title if there was one
   if exists("l:title_kept")
-    if l:title_kept !~ '\V'.s:msgHead
-      let l:title_kept = s:msgHead.l:title_kept
+    if l:title_kept !~ '\V'
+      let l:title_kept = l:title_kept
     endif
     let w:quickfix_title = l:title_kept
   endif
@@ -191,7 +188,7 @@ function! QFGrep#grep_QuickFix(invert)
   endif
   call inputsave()
   echohl QFGPrompt
-  let pat = input( s:msgHead . 'Pattern' . (a:invert?' (Invert-matching):':':'))
+  let pat = input(a:invert? 'v/' : 'g/'))
   echohl None
   call inputrestore()
   "clear the cmdline
