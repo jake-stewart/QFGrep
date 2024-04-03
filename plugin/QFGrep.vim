@@ -45,13 +45,13 @@ function! <SID>FTautocmdBatch()
 
   "create mapping
   if !hasmapto('<Plug>QFGrepG','n')
-    nmap <buffer> <Leader>g <Plug>QFGrepG
+    nmap <buffer> <nowait><Leader>g <Plug>QFGrepG
   endif
   if !hasmapto('<Plug>QFGrepV','n')
-    nmap <buffer> <Leader>v <Plug>QFGrepV
+    nmap <buffer> <nowait><Leader>v <Plug>QFGrepV
   endif
   if !hasmapto('<Plug>QFRestore')
-    nmap <buffer> <Leader>r <Plug>QFRestore
+    nmap <buffer> <nowait><Leader>r <Plug>QFRestore
   endif
 
 endfunction
